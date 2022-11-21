@@ -34,6 +34,10 @@ REST_FRAMEWORK = {
     )
 }
 
+if 'CODESPACE_NAME' in os.environ:
+    CSRF_TRUSTED_ORIGINS = [f'https://{os.getenv("CODESPACE_NAME")}-8000.{os.getenv("GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN")}']
+
+
 # Application definition
 
 INSTALLED_APPS = [
