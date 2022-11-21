@@ -2,7 +2,7 @@ version: "3"
 
 services:
   app:
-    container_name: reservations-api
+    container_name: reservation-api
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
@@ -23,7 +23,7 @@ services:
     network_mode: service:db
 
   db:
-    container_name: reservations-db
+    container_name: reservation-db
     image: postgres:latest
     restart: unless-stopped
     volumes:

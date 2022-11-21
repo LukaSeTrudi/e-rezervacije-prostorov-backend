@@ -1,4 +1,4 @@
-docker exec -it reservations-api pip install -r workspace/requirements.txt
-docker exec -it reservations-api python manage.py makemigrations
-docker exec -it reservations-api python manage.py migrate
-docker exec -it reservations-api python manage.py flush
+docker exec -it reservation-api pip install -r workspace/requirements.txt
+docker exec -it reservation-api python manage.py makemigrations
+docker exec -it reservation-api python manage.py migrate
+docker exec -it reservation-api python manage.py flush
