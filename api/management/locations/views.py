@@ -16,5 +16,5 @@ class LocationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
     }
 
     def get_queryset(self):
-        return Location.objects.all()
+        return Location.objects.filter(owner=self.request.user)
 

@@ -10,7 +10,10 @@ DEBUG = False
 # WhiteNoise configuration
 MIDDLEWARE = [                                                                   
     'django.middleware.security.SecurityMiddleware',
-# Add whitenoise middleware after the security middleware                             
+# Add whitenoise middleware after the security middleware
+# 
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",                      
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',                      
     'django.middleware.common.CommonMiddleware',                                 
@@ -39,3 +42,9 @@ DATABASES = {
         'PASSWORD': os.environ['DBPASS'] 
     }
 }
+
+
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
+
+INSTALLED_APPS += ['corsheaders']

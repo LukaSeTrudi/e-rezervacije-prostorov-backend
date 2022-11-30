@@ -7,7 +7,6 @@ router = DefaultRouter()
 
 router.register(r'locations', LocationViewSet, basename='locations')
 
-
 urlpatterns = [
     path('', include(router.urls)),
 ]

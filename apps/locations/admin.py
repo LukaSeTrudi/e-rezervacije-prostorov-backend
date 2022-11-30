@@ -7,8 +7,8 @@ from import_export import resources
 # Register your models here.
 
 class LocationAdmin(admin.ModelAdmin):
-    list_display = ['name', 'latitude', 'longitude', 'owner_id', 'website_url', 'phone_number', 'email']
-    search_fields = ['name', 'latitude', 'longitude', 'owner_id', 'website_url', 'phone_number', 'email']
+    list_display = ['name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email']
+    search_fields = ['name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email']
 
 class LocationCourtAdmin(admin.ModelAdmin):
     list_display = ['location', 'name']

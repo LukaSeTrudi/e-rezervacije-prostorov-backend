@@ -11,7 +11,7 @@
 
 ## Auth
  - POST /auth/register/ (username, password, email, first_name, last_name)
- - POST /auth/login/ (username, password)
+ - POST /auth/token/ (username, password)
  - POST /auth/token/refresh (refresh)
 
 ## Locations

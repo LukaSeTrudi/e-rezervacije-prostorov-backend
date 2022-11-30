@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 
 class CourtSchedule(models.Model):
-    
     court = models.ForeignKey('locations.LocationCourt', on_delete=models.CASCADE, related_name='schedules')
     day = models.IntegerField()
 

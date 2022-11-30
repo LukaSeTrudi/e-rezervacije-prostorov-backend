@@ -9,7 +9,7 @@ class Location(models.Model):
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
 
-    owner_id = models.ForeignKey(User, on_delete=models.PROTECT, related_name='locations')
+    owner = models.ForeignKey(User, on_delete=models.PROTECT, related_name='locations')
 
     website_url = models.URLField(max_length=200, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
