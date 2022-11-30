@@ -26,7 +26,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # DBHOST is only the server name, not the full URL
 hostname = os.environ['DBHOST']
 
-DEBUG = True
+DEBUG = False
 
 # Configure Postgres database; the full username for PostgreSQL flexible server is
 # username (not @sever-name).

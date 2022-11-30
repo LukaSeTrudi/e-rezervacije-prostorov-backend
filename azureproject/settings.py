@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-7ppocbnx@w71dcuinn*t^_mzal(t@o01v3fee27g%rg18fc5d@')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'rest_framework',
+    'django.contrib.admindocs',
 ]
 
 MIDDLEWARE = [
@@ -100,11 +101,12 @@ WSGI_APPLICATION = 'azureproject.wsgi.application'
 #   Set these environment variables in the .env file for this project.  
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DBNAME'],
-        'HOST': os.environ['DBHOST'],
-        'USER': os.environ['DBUSER'],
-        'PASSWORD': os.environ['DBPASS'] 
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
 
