@@ -11,8 +11,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 # Add whitenoise middleware after the security middleware
 # 
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",                      
+    "corsheaders.middleware.CorsMiddleware",                  
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',                      
     'django.middleware.common.CommonMiddleware',                                 
