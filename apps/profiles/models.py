@@ -12,6 +12,10 @@ class UserProfile(models.Model):
     birth_date = models.DateField(null=True, blank=True)
 
     is_company = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.user.username
+
+    def full_name(self):
+        return self.user.first_name + ' ' + self.user.last_name

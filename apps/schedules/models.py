@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.contrib.auth.models import User
 # Create your models here.
 
 class CourtSchedule(models.Model):
@@ -10,7 +11,9 @@ class CourtSchedule(models.Model):
     end_time = models.TimeField()
 
     price = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-
+    
+    is_active = models.BooleanField(default=True)
+    
     def __str__(self):
         return self.court.name
 
@@ -28,7 +31,7 @@ class CourtScheduleException(models.Model):
 
 class CourtReservation(models.Model):
     schedule = models.ForeignKey(CourtSchedule, on_delete=models.CASCADE, related_name='reservations')
-    user = models.ForeignKey('profiles.UserProfile', on_delete=models.CASCADE, related_name='reservations')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reservations')
 
     date = models.DateField()
 
