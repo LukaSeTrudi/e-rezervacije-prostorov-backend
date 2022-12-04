@@ -8,10 +8,10 @@ CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_
 ALLOWED_HOSTS = ['*']
 # WhiteNoise configuration
 MIDDLEWARE = [                                                                   
+    "corsheaders.middleware.CorsMiddleware",                  
     'django.middleware.security.SecurityMiddleware',
 # Add whitenoise middleware after the security middleware
 # 
-    "corsheaders.middleware.CorsMiddleware",                  
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',                      
     'django.middleware.common.CommonMiddleware',                                 
