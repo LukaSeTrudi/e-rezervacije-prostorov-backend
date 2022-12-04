@@ -14,3 +14,4 @@ sqlparse==0.4.3
 tzdata==2022.6
 psycopg2==2.8.6
 docutils==0.19
+django-filter==22.1

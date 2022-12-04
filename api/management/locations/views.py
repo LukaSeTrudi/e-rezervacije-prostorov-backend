@@ -5,11 +5,15 @@ from api.management.locations.serializers import LocationCourtCreateSerializer, 
 from api.mixins import MultipleSerializersMixin
 from apps.locations.models import Location
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 
 
 class LocationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
     permission_classes = (IsOwner, )
+
+    filter_backends = [filters.SearchFilter,]
+    search_fields = ['name']
+    
     serializers = {
         'default': LocationDetailSerializer,
         'retrieve': LocationDetailSerializer,
@@ -23,6 +27,10 @@ class LocationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
 
 class LocationCourtViewSet(MultipleSerializersMixin, LocationMixin, viewsets.ModelViewSet):
     permission_classes = (IsOwner, )
+
+    filter_backends = [filters.SearchFilter,]
+    search_fields = ['name']
+    
     serializers = {
         'default': LocationCourtListSerializer,
         'retrieve': LocationCourtListSerializer,

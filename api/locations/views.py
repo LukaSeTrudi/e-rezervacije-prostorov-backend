@@ -3,10 +3,13 @@ from api.locations.serializers import LocationDetailSerializer, LocationListSeri
 from api.mixins import MultipleSerializersMixin
 from apps.locations.models import Location
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 
 
 class LocationViewSet(MultipleSerializersMixin, viewsets.ReadOnlyModelViewSet):
+    filter_backends = [filters.SearchFilter,]
+    search_fields = ['name']
+    
     serializers = {
         'default': LocationDetailSerializer,
         'retrieve': LocationDetailSerializer,

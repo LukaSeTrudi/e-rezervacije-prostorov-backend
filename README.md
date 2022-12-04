@@ -11,6 +11,10 @@
 
 '*' means optional
 
+## FILTERING AND SEARCH
+ - Search (url/?search=keywords)
+ - Filter (url/?field_name=some_value)
+
 ## Auth
  - POST /auth/register/ ( 'username', 'password', 'email', 'first_name', 'last_name' )
  - POST /auth/token/ ( 'username', 'password' )

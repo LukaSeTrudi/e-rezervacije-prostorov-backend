@@ -4,14 +4,18 @@ from api.users.serializers import UserUpdateSerializer, UserDetailSerializer, Us
 from api.users.permissions import IsUserOrReadOnly
 from apps.profiles.models import UserProfile
 
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets, mixins, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 class UserViewSet(MultipleSerializersMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
     # Only alloweed to update your own profile, and view other profiles
     permission_classes = (IsUserOrReadOnly,)
+
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ['user__username', 'user__first_name', 'user__last_name']
+    filterset_fields = ['is_company']
 
     serializers = {
         'default': UserDetailSerializer,
