@@ -10,8 +10,6 @@ ALLOWED_HOSTS = ['*']
 MIDDLEWARE = [                                                                   
     "corsheaders.middleware.CorsMiddleware",                  
     'django.middleware.security.SecurityMiddleware',
-# Add whitenoise middleware after the security middleware
-# 
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',                      
     'django.middleware.common.CommonMiddleware',                                 
@@ -33,11 +31,8 @@ DEBUG = True
 # username (not @sever-name).
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DBNAME'],
-        'HOST': hostname + ".postgres.database.azure.com",
-        'USER': os.environ['DBUSER'],
-        'PASSWORD': os.environ['DBPASS'] 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
