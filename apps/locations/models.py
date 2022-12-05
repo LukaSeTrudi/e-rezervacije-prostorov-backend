@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 from django.contrib.auth.models import User
 
@@ -16,8 +16,11 @@ class Location(models.Model):
 
     is_active = models.BooleanField(default=True)
 
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return self.name
+        return f'{self.location.name}'
 
 class LocationCourt(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='courts')
@@ -28,11 +31,15 @@ class LocationCourt(models.Model):
     is_active = models.BooleanField(default=True)
     is_outside = models.BooleanField(default=False)
 
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return self.name
+        return f'{self.location.name} - {self.name}'
 
 class CourtType(models.Model):
     name = models.CharField(max_length=100)
+    description = models.TextField(max_length=500, blank=True)
 
     def __str__(self):
         return self.name

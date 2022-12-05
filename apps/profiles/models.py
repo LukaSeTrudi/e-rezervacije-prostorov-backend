@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
@@ -15,8 +16,11 @@ class UserProfile(models.Model):
     is_company = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username} - {self.user.email}'
 
     @property
     def full_name(self):
