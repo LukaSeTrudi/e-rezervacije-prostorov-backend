@@ -20,7 +20,7 @@ class Location(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.location.name}'
+        return f'{self.name}'
 
 class LocationCourt(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name='courts')
