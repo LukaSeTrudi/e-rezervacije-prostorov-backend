@@ -7,10 +7,9 @@ class UserListSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
     email = serializers.CharField(source='user.email')
 
-    
     class Meta:
         model = UserProfile
-        fields = ('id', 'username', 'full_name', 'email', 'is_company')
+        fields = ('id', 'username', 'full_name', 'email', 'is_company', 'bio', 'location')
     
 
 class UserDetailSerializer(serializers.ModelSerializer):

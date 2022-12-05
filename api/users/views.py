@@ -17,6 +17,8 @@ class UserViewSet(MultipleSerializersMixin, mixins.RetrieveModelMixin, mixins.Up
     search_fields = ['user__username', 'user__first_name', 'user__last_name']
     filterset_fields = ['is_company']
 
+    lookup_field = "user__pk"
+
     serializers = {
         'default': UserDetailSerializer,
         'retrieve': UserDetailSerializer,
