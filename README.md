@@ -21,9 +21,9 @@
  - POST /auth/token/refresh ( 'refresh' )
 
 ## UserProfiles
- - GET /users/ ('id', 'username', 'full_name', 'email', 'is_company')
- - GET /users/current/ ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company')
- - GET /users/<user_id> ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company')
+ - GET /users/ ('id', 'username', 'full_name', 'email', 'is_company', 'bio', 'avatar')
+ - GET /users/current/ ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company', 'avatar')
+ - GET /users/<user_id> ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company', 'avatar')
  - PUT, PATCH /users/<user_id>/ ('phone', 'bio', 'location', 'birth_date')
 
 

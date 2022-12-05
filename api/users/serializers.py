@@ -9,7 +9,7 @@ class UserListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('id', 'username', 'full_name', 'email', 'is_company', 'bio', 'location')
+        fields = ('id', 'username', 'full_name', 'email', 'is_company', 'bio', 'location', 'avatar')
     
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserProfile
-        fields = ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company')
+        fields = ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company', 'avatar')
     
 
 class UserUpdateSerializer(serializers.ModelSerializer):
