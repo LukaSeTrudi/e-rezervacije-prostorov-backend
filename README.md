@@ -26,6 +26,15 @@
  - GET /users/<user_id> ('id', 'username', 'full_name', 'email', 'phone', 'bio', 'location', 'birth_date', 'is_company', 'avatar', 'created_at', 'updated_at')
  - PUT, PATCH /users/<user_id>/ ('phone', 'bio', 'location', 'birth_date')
 
+## Locations
+ - GET /locations/ ( 'id', 'name' )
+ - GET /locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at')
+
+## Courts
+ - GET /courts/<court_type*> ('id', 'name', 'location', ['court_types'], 'created_at', 'updated_at', 'is_outside')
+
+> GET filters - 'location', '[court_types]'
+
 
 ## Management
 
@@ -38,8 +47,8 @@
  - GET /management/court-types/ ( 'id', 'name' )
 
 ### Location Court
- - GET /management/locations/<location_id>/courts/<court_id*> ( 'id', 'name', ['court_types'], 'location' )
- - POST, PUT, PATCH /management/locations/<location_id>/courts/<court_id*>/ ( 'name', ['court_types'] )
+ - GET /management/locations/<location_id>/courts/<court_id*> ( 'id', 'name', ['court_types'], 'location', 'is_outside', 'is_active' )
+ - POST, PUT, PATCH /management/locations/<location_id>/courts/<court_id*>/ ( 'name', ['court_types'], 'is_outside', 'is_active' )
 
 ### Schedules
  - GET /management/locations/<location_id>/courts/<court_id>/schedules/<schedule_id*> ( 'id', 'court', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'is_active', 'created_at', 'updated_at' )

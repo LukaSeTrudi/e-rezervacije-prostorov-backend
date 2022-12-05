@@ -27,15 +27,15 @@ class LocationCourtListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = LocationCourt
-        fields = ('id', 'name', 'court_types', 'location')
+        fields = ('id', 'name', 'court_types', 'location', 'is_outside', 'is_active')
 
 class LocationCourtCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = LocationCourt
-        fields = ('name', 'court_types', 'location')
+        fields = ('name', 'court_types', 'location', 'is_outside', 'is_active')
         extra_kwargs = { 'location': {'required': False} }
 
 class LocationCourtUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = LocationCourt
-        fields = ('name', 'court_types')
+        fields = ('name', 'court_types', 'is_outside', 'is_active')
