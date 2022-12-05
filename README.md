@@ -35,6 +35,18 @@
 
 > GET filters - 'location', '[court_types]'
 
+## Schedules
+Gives you schedule for current week
+ - GET /schedules/
+ - Filters:
+  - date (YY-MM-DD defaults to current date if not given)
+  - location (int)
+  - court (int)
+  - day (1-7) - only gives schedules for that day
+  - month (bool, if given, gives you schedule for 6 weeks)
+  - if day or month are not given it defaults to current week schedule
+ - returns ( 'id', 'court', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at' )
+
 
 ## Management
 

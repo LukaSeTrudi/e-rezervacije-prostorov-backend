@@ -1,6 +1,6 @@
 
 from datetime import timedelta
-from api.schedules.serializers import CourtReservationsSerializer, CourtScheduleListSerializer
+from api.schedules.serializers import CourtReservationsSerializer
 from apps.schedules.models import CourtSchedule
 from django.utils import timezone
 from rest_framework.response import Response
