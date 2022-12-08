@@ -37,8 +37,17 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50,
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Rezrvd API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
 }
 
 ALLOWED_HOSTS = []
@@ -61,6 +70,7 @@ INSTALLED_APPS = [
     'apps.schedules',
 
     'django_extensions',
+    'drf_spectacular',
     'django_filters',
     'rest_framework',
     'django.contrib.admindocs',
