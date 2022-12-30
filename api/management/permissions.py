@@ -1,4 +1,5 @@
 from apps.locations.models import Location, LocationCourt
+from apps.schedules.models import CourtSchedule
 from rest_framework import permissions
 
 class IsOwner(permissions.BasePermission):
@@ -11,4 +12,6 @@ class IsOwner(permissions.BasePermission):
             return obj.owner == request.user
         elif obj.__class__ == LocationCourt:
             return obj.location.owner == request.user
+        elif obj.__class__ == CourtSchedule:
+            return obj.court.location.owner == request.user
         return True
