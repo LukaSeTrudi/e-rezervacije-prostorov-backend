@@ -4,7 +4,7 @@ from rest_framework import permissions
 class IsOwner(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
-        if not request.user.is_authenticated or request.user.profile.is_company:
+        if not request.user.is_authenticated or not request.user.profile.is_company:
             return False
 
         if obj.__class__ == Location:
