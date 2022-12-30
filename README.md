@@ -30,10 +30,14 @@
  - GET /locations/ ( 'id', 'name' )
  - GET /locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at')
 
+> GET filters - 'owner'
+> GET search - 'name'
+
 ## Courts
  - GET /courts/<court_type*> ('id', 'name', 'location', ['court_types'], 'created_at', 'updated_at', 'is_outside')
 
 > GET filters - 'location', '[court_types]'
+> GET search - 'name'
 
 ## Schedules
 Gives you schedule for current week
@@ -45,7 +49,7 @@ Gives you schedule for current week
   - day (1-7) - only gives schedules for that day
   - month (bool, if given, gives you schedule for 6 weeks)
   - if day or month are not given it defaults to current week schedule
- - returns ( 'id', 'court', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at' )
+ - returns ( 'id', 'court', 'title', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at' )
 
 
 ## Management
@@ -67,6 +71,18 @@ Gives you schedule for current week
  - POST, PUT, PATCH /management/locations/<location_id>/courts/<court_id>/schedules/<schedule_id*>/ ( 'day', 'start_time', 'end_time', 'price', 'is_active')
 
 > NOTES: day represents day in the week from 1(Monday) to 7(Sunday)
+
+### Analytics
+ - GET /management/analytics/
+ - Only for companies, gives you some analytics
+ - Params are type, location, court, user
+ - types are (user_shown, user_detail, location_shown, location_detail, court_shown, court_detail)
+ - location, court, user are ids for filtering
+
+ - shown means everytime they are queried in a list
+ - detail means everytime they are queried by an id
+
+ - returns ('id', 'user', 'log_type', 'created_at', 'location', 'court', 'user_profile')
 
 ### Reservations
  - GET /management/locations/<location_id>/courts/<court_id>/schedules/<schedule_id>/reservations/<reservation_id*> ( 'id', 'schedule', 'user', 'date', 'confirmed', 'created_at', 'updated_at' )

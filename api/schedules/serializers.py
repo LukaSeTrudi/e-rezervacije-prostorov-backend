@@ -5,7 +5,7 @@ from apps.schedules.models import CourtReservation, CourtSchedule
 class CourtScheduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourtSchedule
-        fields = ('id', 'court', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
+        fields = ('id', 'court', 'title', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
 
 class CourtReservationsSerializer(serializers.ModelSerializer):
     reservation_taken = serializers.SerializerMethodField()
@@ -15,7 +15,7 @@ class CourtReservationsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourtSchedule
-        fields = ('id', 'court', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
+        fields = ('id', 'court', 'title', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
     
     def get_date(self, obj):
         date = self.context['date']

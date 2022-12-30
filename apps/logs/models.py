@@ -21,7 +21,7 @@ class Log(models.Model):
         (LOG_TYPE_COURT_DETAIL, 'Court detail'),
     )
 
-    user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True, related_name='logs')
     created_at = models.DateTimeField(auto_now_add=True)
     
     location = models.ForeignKey('locations.Location', on_delete=models.SET_NULL, null=True)

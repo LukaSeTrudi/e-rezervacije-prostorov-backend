@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from api.management.analytics.views import AnalyticsAPIView
 from api.management.schedules.views import CourtReservationViewSet, CourtScheduleViewSet
 
 from rest_framework.routers import DefaultRouter
@@ -12,4 +13,5 @@ router.register(r'locations/(?P<location_pk>[0-9]+)/courts/(?P<court_pk>[0-9]+)/
 router.register(r'locations/(?P<location_pk>[0-9]+)/courts/(?P<court_pk>[0-9]+)/schedules/(?P<schedule_pk>[0-9]+)/reservations', CourtReservationViewSet, basename='reservations')
 urlpatterns = [
     path('', include(router.urls)),
+    path('analytics/', AnalyticsAPIView.as_view(), name='analytics'),
 ]
