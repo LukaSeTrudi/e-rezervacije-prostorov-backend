@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'apps.locations',
     'apps.profiles',
     'apps.schedules',
+    'apps.logs',
 
     'django_extensions',
     'drf_spectacular',

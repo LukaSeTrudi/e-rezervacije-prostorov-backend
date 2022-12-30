@@ -19,6 +19,8 @@ class CourtSchedule(models.Model):
     court = models.ForeignKey('locations.LocationCourt', on_delete=models.CASCADE, related_name='schedules')
     day = models.CharField(max_length=1, choices=DAY_OF_WEEK)
 
+    title = models.CharField(max_length=100, blank=True)
+
     start_time = models.TimeField()
     end_time = models.TimeField()
 
@@ -41,6 +43,8 @@ class CourtScheduleException(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+    title = models.CharField(max_length=100, blank=True)
 
     price = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     is_active = models.BooleanField(default=True)
