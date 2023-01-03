@@ -22,6 +22,11 @@ class LogListSerializer(serializers.ModelSerializer):
     court = CourtSerializer()
     user_profile = UserProfileSerializer()
 
+    user = serializers.SerializerMethodField()
+
     class Meta:
         model = Log
         fields = ('id', 'user', 'log_type', 'created_at', 'location', 'court', 'user_profile')
+
+    def get_user(self, obj):
+        return obj.user_profile.user.username
