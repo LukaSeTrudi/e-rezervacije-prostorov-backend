@@ -53,7 +53,7 @@ class LocationViewSet(MultipleSerializersMixin, viewsets.ReadOnlyModelViewSet):
 
 class LocationCourtViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    search_fields = ['name']
+    search_fields = ['name', 'location__city__name']
     filterset_fields = ['location', 'court_types', 'is_outside']
     
     serializer_class = LocationCourtSerializer
