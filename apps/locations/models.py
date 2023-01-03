@@ -3,12 +3,20 @@ from django.utils import timezone
 # Create your models here.
 from django.contrib.auth.models import User
 
+class LocationCity(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.name}'
+
 class Location(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(User, on_delete=models.PROTECT, related_name='locations')
 
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
+
+    city = models.ForeignKey(LocationCity, on_delete=models.SET_NULL, related_name='locations', null=True, blank=True)
 
     website_url = models.URLField(max_length=200, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)

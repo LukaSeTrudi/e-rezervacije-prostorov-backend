@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.locations.models import CourtType, Location, LocationCourt
+from apps.locations.models import CourtType, Location, LocationCourt, LocationCity
 
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
@@ -23,8 +23,12 @@ class CourtTypeAdmin(ImportExportModelAdmin):
     search_fields = ['name']
     resource_classes = [CourtTypeResource]
 
+class LocationCityAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
 
 
 admin.site.register(Location, LocationAdmin)
 admin.site.register(LocationCourt, LocationCourtAdmin)
 admin.site.register(CourtType, CourtTypeAdmin)
+admin.site.register(LocationCity, LocationCityAdmin)

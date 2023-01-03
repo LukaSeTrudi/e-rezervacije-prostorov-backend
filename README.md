@@ -27,14 +27,14 @@
  - PUT, PATCH /users/<user_id>/ ('phone', 'bio', 'location', 'birth_date')
 
 ## Locations
- - GET /locations/ ( 'id', 'name' )
- - GET /locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at')
+ - GET /locations/ ( 'id', 'name', 'city' )
+ - GET /locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at', 'city')
 
 > GET filters - 'owner'
 > GET search - 'name'
 
 ## Courts
- - GET /courts/<court_type*> ('id', 'name', 'location', ['court_types'], 'created_at', 'updated_at', 'is_outside')
+ - GET /courts/<court_type*> ('id', 'name', 'owner', 'location', ['court_types'], 'created_at', 'updated_at', 'is_outside')
 
 > GET filters - 'location', '[court_types]'
 > GET search - 'name'
@@ -55,8 +55,8 @@ Gives you schedule for current week
 ## Management
 
 ### Location
- - GET /management/locations/ ( 'id', 'name', 'is_active', 'owner', 'created_at', 'updated_at' )
- - GET /management/locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active', 'created_at', 'updated_at')
+ - GET /management/locations/ ( 'id', 'name', 'is_active', 'owner', 'created_at', 'updated_at', 'city' )
+ - GET /management/locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active', 'created_at', 'updated_at', 'city')
  - POST, PUT, PATCH /management/locations/<location_id*>/ ( 'name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active' )
 
 ### Court types

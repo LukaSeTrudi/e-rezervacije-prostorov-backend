@@ -11,16 +11,28 @@ class LocationCreateSerializer(serializers.ModelSerializer):
 
 class LocationListSerializer(serializers.ModelSerializer):
     owner = UserListSerializer(source='owner.profile')
+    city = serializers.SerializerMethodField()
+
     class Meta:
         model = Location
-        fields = ('id', 'name', 'is_active', 'owner')
+        fields = ('id', 'name', 'is_active', 'owner', 'city')
+    
+    def get_city(self, obj):
+        if obj.city is None:
+            return None
+        return obj.city.name
 
 class LocationDetailSerializer(serializers.ModelSerializer):
-
+    city = serializers.SerializerMethodField()
     owner = UserDetailSerializer(source='owner.profile')
     class Meta:
         model = Location
-        fields = ('id', 'name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active')
+        fields = ('id', 'name', 'city', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active')
+
+    def get_city(self, obj):
+        if obj.city is None:
+            return None
+        return obj.city.name
 
 class LocationCourtListSerializer(serializers.ModelSerializer):
     court_types = CourtTypeSerializer(many=True)
