@@ -29,4 +29,6 @@ class LogListSerializer(serializers.ModelSerializer):
         fields = ('id', 'user', 'log_type', 'created_at', 'location', 'court', 'user_profile')
 
     def get_user(self, obj):
+        if obj.user_profile is None:
+            return None
         return obj.user_profile.user.username
