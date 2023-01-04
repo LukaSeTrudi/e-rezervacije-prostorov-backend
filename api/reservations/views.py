@@ -6,6 +6,7 @@ from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django.utils import timezone
 
 class ReservationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
@@ -17,7 +18,7 @@ class ReservationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
     }
 
     def get_queryset(self):
-        return CourtReservation.objects.filter(user=self.request.user)
+        return CourtReservation.objects.filter(user=self.request.user).order_by('-date')
     
     def update(self, request, *args, **kwargs):
         return Response({'status': 'error', 'message': 'Updating reservations is not allowed.'}, status=400)
@@ -34,6 +35,9 @@ class ReservationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
 
         if int((date.weekday() + 1) % 8) != int(schedule.day):
             return Response({'status': 'error', 'message': 'The selected date does not match the schedule.'}, status=400)
+
+        if date < timezone.now():
+            return Response({'status': 'error', 'message': 'The selected date is less than current time.'}, status=400)
 
         reservation = validator.save(user=request.user)
         reservation.save()
