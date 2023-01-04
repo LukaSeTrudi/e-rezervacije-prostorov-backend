@@ -30,13 +30,13 @@
  - GET /locations/ ( 'id', 'name', 'city' )
  - GET /locations/<location_id> ( 'id', 'name', 'latitude', 'longitude', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at', 'city')
 
-> GET filters - 'owner'
+> GET filters - 'owner', 'city'
 > GET search - 'name'
 
 ## Courts
  - GET /courts/<court_type*> ('id', 'name', 'owner', 'location', ['court_types'], 'created_at', 'updated_at', 'is_outside')
 
-> GET filters - 'location', '[court_types]'
+> GET filters - 'location', '[court_types]', 'city', 'is_outside'
 > GET search - 'name'
 
 ## Schedules
@@ -60,7 +60,10 @@ Gives you schedule for current week
  - POST, PUT, PATCH /management/locations/<location_id*>/ ( 'name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active' )
 
 ### Court types
- - GET /management/court-types/ ( 'id', 'name' )
+ - GET /court-types/ ( 'id', 'name' )
+
+### Citys
+ - GET /citys/ ('id', 'name')
 
 ### Location Court
  - GET /management/locations/<location_id>/courts/<court_id*> ( 'id', 'name', ['court_types'], 'location', 'is_outside', 'is_active' )

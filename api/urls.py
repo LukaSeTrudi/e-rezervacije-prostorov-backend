@@ -2,7 +2,7 @@
 from django.urls import path, include
 from api.schedules.views import CourtScheduleAPIView
 from api.users.views import UserViewSet
-from api.views import CourtTypeAPIView
+from api.views import CourtTypeAPIView, CityAPIView
 
 
 from rest_framework.routers import DefaultRouter
@@ -20,5 +20,6 @@ urlpatterns = [
     path('auth/', include('api.auth.urls')),
     path('management/', include('api.management.urls')),
     path('court-types/', CourtTypeAPIView.as_view(), name='court-types'),
+    path('citys/', CityAPIView.as_view(), name='citys'),
     path('schedules/', CourtScheduleAPIView.as_view(), name='schedules'),
 ]

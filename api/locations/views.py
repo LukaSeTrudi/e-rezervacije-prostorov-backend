@@ -10,7 +10,7 @@ from rest_framework.response import Response
 class LocationViewSet(MultipleSerializersMixin, viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name']
-    filterset_fields = ['owner']
+    filterset_fields = ['owner', 'city']
     
     serializers = {
         'default': LocationDetailSerializer,
@@ -54,7 +54,7 @@ class LocationViewSet(MultipleSerializersMixin, viewsets.ReadOnlyModelViewSet):
 class LocationCourtViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     search_fields = ['name', 'location__city__name']
-    filterset_fields = ['location', 'court_types', 'is_outside']
+    filterset_fields = ['location', 'court_types', 'is_outside', 'city']
     
     serializer_class = LocationCourtSerializer
     def get_queryset(self):
