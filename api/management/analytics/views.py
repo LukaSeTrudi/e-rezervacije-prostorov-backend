@@ -18,20 +18,22 @@ class AnalyticsAPIView(APIView):
         qs = Log.objects.all()
         if 'type' in params:
             valid_types = [t[0] for t in Log.LOG_TYPES]
-            if not params['type'] in valid_types:
-                return Response({'error': 'Invalid type, valid types are ' + str.join(', ', valid_types)}, status=400)
-            qs = Log.objects.filter(log_type=params['type'])
+            splitted = params['type'].split(',')
+            for k in splitted:
+                if not k in valid_types:
+                    return Response({'error': 'Invalid type, valid types are ' + str.join(', ', valid_types)}, status=400)
+            qs = Log.objects.filter(log_type__in=splitted)
         
         qs = qs.filter(Q(location=None) | Q(location__owner=user))
         qs = qs.filter(Q(court=None) | Q(court__location__owner=user))
         qs = qs.filter(Q(user_profile=None) | Q(user_profile__user=user))
         
         if 'location' in params:
-            qs = qs.filter(location=params['location'])
+            qs = qs.filter(location__in=params['location'].split(','))
         if 'court' in params:
-            qs = qs.filter(court=params['court'])
+            qs = qs.filter(court__in=params['court'].split(','))
         if 'user' in params:
-            qs = qs.filter(user_profile=params['user'])
+            qs = qs.filter(user_profile__in=params['user'].split(','))
 
         data = LogListSerializer(qs, many=True).data
         

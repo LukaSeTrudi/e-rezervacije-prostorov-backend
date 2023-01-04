@@ -78,6 +78,7 @@ Gives you schedule for current week
  - Params are type, location, court, user
  - types are (user_shown, user_detail, location_shown, location_detail, court_shown, court_detail)
  - location, court, user are ids for filtering
+ - split multiple filter choices with ,
 
  - shown means everytime they are queried in a list
  - detail means everytime they are queried by an id
