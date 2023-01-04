@@ -7,7 +7,7 @@ class LocationCreateSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(default=serializers.CurrentUserDefault())
     class Meta:
         model = Location
-        fields = ('name', 'latitude', 'longitude', 'owner', 'website_url', 'phone_number', 'email', 'is_active')
+        fields = ('name', 'latitude', 'longitude', 'city', 'owner', 'website_url', 'phone_number', 'email', 'is_active')
 
 class LocationListSerializer(serializers.ModelSerializer):
     owner = UserListSerializer(source='owner.profile')
