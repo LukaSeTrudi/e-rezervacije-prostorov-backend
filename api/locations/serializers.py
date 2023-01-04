@@ -1,31 +1,25 @@
 from api.users.serializers import UserListSerializer
-from apps.locations.models import CourtType, Location, LocationCourt
+from apps.locations.models import CourtType, Location, LocationCity, LocationCourt
 from rest_framework import serializers
 
+class LocationCitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LocationCity
+        fields = ('id', 'name')
+
 class LocationListSerializer(serializers.ModelSerializer):
-    city = serializers.SerializerMethodField()
+    city = LocationCitySerializer()
 
     class Meta:
         model = Location
         fields = ('id', 'name', 'city')
 
-    def get_city(self, obj):
-        if obj.city is None:
-            return None
-        return obj.city.name
-
 class LocationDetailSerializer(serializers.ModelSerializer):
-    city = serializers.SerializerMethodField()
+    city = LocationCitySerializer()
 
     class Meta:
         model = Location
         fields = ('id', 'name', 'latitude', 'longitude', 'city', 'website_url', 'phone_number', 'email', 'owner', 'created_at', 'updated_at')
-
-    
-    def get_city(self, obj):
-        if obj.city is None:
-            return None
-        return obj.city.name
 
 class CourtTypeSerializer(serializers.ModelSerializer):
     class Meta:

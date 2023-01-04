@@ -51,6 +51,15 @@ Gives you schedule for current week
   - if day or month are not given it defaults to current week schedule
  - returns ( 'id', 'court', 'title', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at' )
 
+## Reservations
+Reserve court schedules
+
+
+- GET /reservations/ ('id', 'user', 'schedule', 'date', 'confirmed', 'created_at', 'updated_at')
+- POST /reservations/ ('schedule', 'date')
+- DELETE /reservations/<reservation_id>
+
+> GET serach - 'court name', 'schedule_title'
 
 ## Management
 

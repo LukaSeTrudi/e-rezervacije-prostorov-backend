@@ -1,8 +1,8 @@
 
 from api.locations.serializers import LocationCourtSerializer, LocationDetailSerializer, LocationListSerializer
-from api.mixins import MultipleSerializersMixin
 from apps.locations.models import Location, LocationCourt
 from apps.logs.models import Log
+from api.mixins import MultipleSerializersMixin
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response

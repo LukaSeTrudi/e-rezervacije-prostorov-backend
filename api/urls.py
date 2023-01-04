@@ -1,5 +1,6 @@
 
 from django.urls import path, include
+from api.reservations.views import ReservationViewSet
 from api.schedules.views import CourtScheduleAPIView
 from api.users.views import UserViewSet
 from api.views import CourtTypeAPIView, CityAPIView
@@ -12,7 +13,7 @@ router = DefaultRouter()
 router.register(r'locations', LocationViewSet, basename='locations')
 router.register(r'courts', LocationCourtViewSet, basename='courts')
 router.register(r'users', UserViewSet, basename='users')
-
+router.register(r'reservations', ReservationViewSet, basename='reservations')
 #router.register(r'schedules', CourtScheduleViewSet, basename='schedules')
 
 urlpatterns = [
