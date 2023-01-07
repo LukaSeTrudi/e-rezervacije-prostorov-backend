@@ -1,5 +1,16 @@
 from apps.schedules.models import CourtReservation, CourtSchedule
+from apps.locations.models import LocationCourt, Location
 from rest_framework import serializers
+
+class CourtSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LocationCourt
+        fields = ('id', 'name')
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = ('id', 'name', )
 
 class CourtScheduleListSerializer(serializers.ModelSerializer):
     day_formatted = serializers.SerializerMethodField()
@@ -17,7 +28,9 @@ class CourtReservationCreateSerializer(serializers.ModelSerializer):
 
 class CourtReservationListSerializer(serializers.ModelSerializer):
     schedule = CourtScheduleListSerializer()
+    court = CourtSerializer(source='schedule.court')
+    location = LocationSerializer(source='schedule.court.location')
 
     class Meta:
         model = CourtReservation
-        fields = ('id', 'user', 'schedule', 'date', 'confirmed', 'created_at', 'updated_at')
+        fields = ('id', 'court', 'location', 'user', 'schedule', 'date', 'confirmed', 'created_at', 'updated_at')

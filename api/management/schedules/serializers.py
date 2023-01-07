@@ -5,12 +5,12 @@ from rest_framework import serializers
 class CourtScheduleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourtSchedule
-        fields = ('id', 'court', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'is_active', 'created_at', 'updated_at')
+        fields = ('id', 'court', 'day', 'title', 'day_formatted', 'start_time', 'end_time', 'price', 'is_active', 'created_at', 'updated_at')
 
 class CourtScheduleCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourtSchedule
-        fields = ('court', 'day', 'start_time', 'end_time', 'price', 'is_active')
+        fields = ('court', 'day', 'title', 'start_time', 'end_time', 'price', 'is_active')
         extra_kwargs = { 'court': { 'required': False } }
 
 class CourtReservationListSerializer(serializers.ModelSerializer):

@@ -35,6 +35,10 @@ class AnalyticsAPIView(APIView):
         if 'user' in params:
             qs = qs.filter(user_profile__in=params['user'].split(','))
 
+        if 'is_company' in params:
+            is_company = params['is_company'].lower() == 'true'
+            qs = qs.filter(user__profile__is_company=is_company)
+
         data = LogListSerializer(qs, many=True).data
         
         return Response(data)

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from api.users.serializers import UserListSerializer
 from rest_framework import serializers
 from apps.schedules.models import CourtReservation, CourtSchedule
 
@@ -11,26 +12,21 @@ class CourtReservationsSerializer(serializers.ModelSerializer):
     reservation_taken = serializers.SerializerMethodField()
     start_datetime = serializers.SerializerMethodField()
     end_datetime = serializers.SerializerMethodField()
-    date = serializers.SerializerMethodField()
 
     class Meta:
         model = CourtSchedule
-        fields = ('id', 'court', 'title', 'date','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
+        fields = ('id', 'court', 'title','reservation_taken', 'start_datetime', 'end_datetime', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
     
-    def get_date(self, obj):
-        date = self.context['date']
-        return date
 
     def get_reservation_taken(self, obj):
         date = self.context['date']
         current_user = self.context['user']
 
         date_true = date + timedelta(days=int(obj.day) - 1)
-        print(date_true)
         reservation = CourtReservation.objects.filter(schedule=obj, date=date_true)
         if reservation.exists():
-            return False if reservation.first().user == current_user else True
-        return False
+            return UserListSerializer(reservation.first().user.profile).data
+        return None
     
     def get_start_datetime(self, obj):
         date = self.context['date']
