@@ -7,6 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.utils import timezone
+from datetime import datetime
 
 class ReservationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
@@ -36,7 +37,7 @@ class ReservationViewSet(MultipleSerializersMixin, viewsets.ModelViewSet):
         if int((date.weekday() + 1) % 8) != int(schedule.day):
             return Response({'status': 'error', 'message': 'The selected date does not match the schedule.'}, status=400)
 
-        if date < timezone.now():
+        if date < datetime.now().date():
             return Response({'status': 'error', 'message': 'The selected date is less than current time.'}, status=400)
 
         reservation = validator.save(user=request.user)
