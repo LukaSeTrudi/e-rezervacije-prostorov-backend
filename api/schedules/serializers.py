@@ -8,6 +8,14 @@ class CourtScheduleListSerializer(serializers.ModelSerializer):
         model = CourtSchedule
         fields = ('id', 'court', 'title', 'day', 'day_formatted', 'start_time', 'end_time', 'price', 'created_at', 'updated_at')
 
+class CourtReservationSerializer(serializers.ModelSerializer):
+    user = UserListSerializer(source='user.profile')
+
+    class Meta:
+        model = CourtReservation
+        fields = ('id', 'schedule', 'date', 'user', 'confirmed', 'created_at', 'updated_at')
+
+
 class CourtReservationsSerializer(serializers.ModelSerializer):
     reservation_taken = serializers.SerializerMethodField()
     start_datetime = serializers.SerializerMethodField()
@@ -25,7 +33,7 @@ class CourtReservationsSerializer(serializers.ModelSerializer):
         date_true = date + timedelta(days=int(obj.day) - 1)
         reservation = CourtReservation.objects.filter(schedule=obj, date=date_true)
         if reservation.exists():
-            return UserListSerializer(reservation.first().user.profile).data
+            return CourtReservationSerializer(reservation.first()).data
         return None
     
     def get_start_datetime(self, obj):
