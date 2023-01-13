@@ -13,6 +13,11 @@ class CourtScheduleCreateSerializer(serializers.ModelSerializer):
         fields = ('court', 'day', 'title', 'start_time', 'end_time', 'price', 'is_active')
         extra_kwargs = { 'court': { 'required': False } }
 
+    def validate(self, data):
+        if data['start_time'] >= data['end_time']:
+            raise serializers.ValidationError('Start time must be before end time.')
+        return data
+
 class CourtReservationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourtReservation
